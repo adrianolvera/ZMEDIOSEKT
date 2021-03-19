@@ -1,0 +1,79 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:u="sap.ui.unified"
+	controllerName="MEDIOS_EKT.controller.ReporteDescuentos" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="Folios">
+		<content>
+			<Vbox>
+				<ComboBox xmlns="sap.m" id="ztdesc" items="{ path: '/TipoDescuentoSet' }" placeholder="Tipo de descuento">
+					<core:Item xmlns:core="sap.ui.core" key="{Ztdesc}" text="{Desc}"/>
+				</ComboBox>
+				<Label text="Valor del descuento"/>
+			</Vbox>
+			<Input width="10%" placeholder="Contado"></Input>
+			<Input width="10%" id="zdcred" placeholder="Crédito"></Input>
+			<Vbox>
+				<Label text="Reglas de la promoción"/>
+				<CheckBox text="Acumulable"/>
+			</Vbox>
+			<u:FileUploader id="FileUploaderId" sameFilenameAllowed="true" iconOnly="false" buttonOnly="true" fileType="XLSX,xlsx"
+				icon="sap-icon://upload" iconFirst="true" style="Emphasized" change="onUpload" xmlns:u="sap.ui.unified"/>
+			<Table items="{localModel>/items}">
+				<columns>
+<!--					<Column><Label text="Proveedor"/></Column>
+					<Column><Label text="Atributo"/></Column>
+					<Column><Label text="Marca"/></Column>
+					<Column><Label text="Tipo de Descuento"/></Column>
+					<Column><Label text="Descuento contado"/></Column>
+					<Column><Label text="Descuento crédito"/></Column>
+					<Column><Label text="Promociones activas"/></Column>
+					<Column><Label text="Costo sim impuesto"/></Column>
+					<Column><Label text="Precio chaz actual"/></Column>
+					<Column><Label text="Cto. Actual Crédito"/></Column>
+					<Column><Label text="Neg. Compras"/></Column>
+					<Column><Label text="Neg. Vta. contado"/></Column>
+					<Column><Label text="Neg. Vta. Crédito"/></Column>
+					<Column><Label text="Cto. Simulado contado"/></Column>
+					<Column><Label text="Precio A contado"/></Column>
+					<Column><Label text="Cto. Simulado Crédito"/></Column>-->
+					<Column><Label text="Col1"/></Column>
+					<Column><Label text="Col2"/></Column>
+					<Column><Label text="Col3"/></Column>
+					<Column><Label text="Col4"/></Column>
+					<Column><Label text="Col5"/></Column>
+					<Column><Label text="Col6"/></Column>
+					<Column><Label text="Col7"/></Column>
+					<Column><Label text="Col8"/></Column>
+					<Column><Label text="Col9"/></Column>
+					<Column><Label text="Coll0"/></Column>
+					<Column><Label text="Col11"/></Column>
+					<Column><Label text="Col12"/></Column>
+					<Column><Label text="Col13"/></Column>
+					<Column><Label text="Col14"/></Column>
+					<Column><Label text="Col15"/></Column>
+					<Column><Label text="Col16"/></Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{localModel>Col1}"/>
+							<Text text="{localModel>Col2}"/>
+							<Text text="{localModel>Col3}"/>
+							<Text text="{localModel>Col4}"/>
+							<Text text="{localModel>Col5}"/>
+							<Text text="{localModel>Col6}"/>
+							<Text text="{localModel>Col7}"/>
+							<Text text="{localModel>Col8}"/>
+							<Text text="{localModel>Col9}"/>
+							<Text text="{localModel>Col10}"/>
+							<Text text="{localModel>Col11}"/>
+							<Text text="{localModel>Col12}"/>
+							<Text text="{localModel>Col13}"/>
+							<Text text="{localModel>Col14}"/>
+							<Text text="{localModel>Col15}"/>
+							<Text text="{localModel>Col16}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+	</Page>
+</core:FragmentDefinition>

@@ -1,0 +1,44 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:m="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<m:Page enableScrolling="false">
+		<m:content>
+			<m:Label text="Tipo de venta"/>
+			<m:Vbox>
+				<l:HorizontalLayout>
+					<m:CheckBox text="Crédito"/>
+					<m:ComboBox xmlns="sap.m" id="co_plazos3" items="{ path: '/PlantillasSet' }" placeholder="Seleccione Plazos">
+						<core:Item xmlns:core="sap.ui.core" key="{ID}" text="{DESCRIPCION}"/>
+					</m:ComboBox>
+					<m:Vbox>
+						<m:Input placeholder="Mecánica de Tasa"></m:Input>
+					</m:Vbox>
+				</l:HorizontalLayout>
+				<l:HorizontalLayout>
+					<m:CheckBox text="Contado"/>
+				</l:HorizontalLayout>
+			</m:Vbox>
+			<m:Label text="Reglas de la promoción"/>
+			<m:Vbox>
+				<l:HorizontalLayout>
+					<m:CheckBox text="Paquete m x n (4 x 3)"/>
+					<m:Vbox>
+						<m:Input placeholder="Unidades"></m:Input>
+					</m:Vbox>
+				</l:HorizontalLayout>
+				<l:HorizontalLayout>
+					<m:CheckBox text="Paquete especial por piezas"/>
+				</l:HorizontalLayout>
+				<m:ComboBox xmlns="sap.m" id="co_dto" items="{ path: '/PlantillasSet' }" placeholder="Tipo de descuento">
+					<core:Item xmlns:core="sap.ui.core" key="{ID}" text="{DESCRIPCION}"/>
+				</m:ComboBox>
+				<m:Label text="Valor del descuento"/>
+				<m:Input placeholder="Contado"></m:Input>
+				<m:Input placeholder="Crédito"></m:Input>
+				<m:Label text="Reglas de la promoción de paquetes con regalos"/>
+				<m:RadioButton groupName="GroupA" text="Generar Vale" selected="true"/>
+				<m:RadioButton groupName="GroupA" text="Solo Vale"/>
+				<m:MultiInput width="80%" id="Regalos" valueHelpOnly="true" valueHelpRequest=".onValueHelpTiendas"></m:MultiInput>
+			</m:Vbox>
+		</m:content>
+	</m:Page>
+</core:FragmentDefinition>

@@ -1,0 +1,261 @@
+{
+	"_version": "1.7.0",
+	"sap.app": {
+		"id": "MEDIOS_EKT",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "servicecatalog.connectivityComponent",
+			"version": "0.0.0"
+		},
+		"dataSources": {
+			"ZMEDIOS_SRV": {
+				"uri": "/sap/opu/odata/sap/ZMEDIOS_SRV/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/ZMEDIOS_SRV/metadata.xml"
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			"sap_hcb",
+			"sap_belize"
+		]
+	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "MEDIOS_EKT.view.Home",
+			"type": "XML"
+		},
+		"dependencies": {
+			"minUI5Version": "1.30.0",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {},
+				"sap.ui.layout": {},
+				"sap.ushell": {},
+				"sap.collaboration": {},
+				"sap.ui.comp": {},
+				"sap.uxap": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "MEDIOS_EKT.i18n.i18n"
+				}
+			},
+			"Medios": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneTime",
+					"defaultCountMode": "Request"
+				},
+				"dataSource": "ZMEDIOS_SRV",
+				"preload": true
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"async": true,
+				"viewPath": "MEDIOS_EKT.view",
+				"controlAggregation": "pages",
+				"controlId": "idAppControl",
+				"clearControlAggregation": false,
+				"bypassed": {
+					"target": []
+				}
+			},
+			"routes": [
+				{
+					"name": "Principal",
+					"pattern": "RouteMain",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"Principal"
+					]
+				},
+				{
+					"name": "Descuentos",
+					"pattern": "RouteDescuentos",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"Descuentos"
+					]
+				},
+				{
+					"name": "Plantillas",
+					"pattern": "RoutePlantillas",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"Plantillas"
+					]
+				},
+				{
+					"name": "Home",
+					"pattern": "RouteHome",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"Home"
+					]
+				},
+				{
+					"name": "PaqMonto",
+					"pattern": "RoutePaqMonto",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"PaqMonto"
+					]
+				},
+				{
+					"name": "PaqCantidad",
+					"pattern": "RoutePaqCantidad",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"PaqCantidad"
+					]
+				},
+				{
+					"name": "Regalos",
+					"pattern": "RouteRegalos",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"Regalos"
+					]
+				},
+				{
+					"name": "EventoPromocional",
+					"pattern": "RouteEventoPromocional",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"EventoPromocional"
+					]
+				}
+			],
+			"targets": {
+				"Plantillas": {
+					"viewType": "XML",
+					"viewName": "Plantillas",
+					"transition": "flip",
+					"viewLevel": 0,
+					"clearAggregation": false,
+					"controlId": "idAppControl",
+					"controlAggregation": "pages"
+				},
+				"Descuentos": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "Descuentos",
+					"controlAggregation": "pages",
+					"controlId": "idAppControl"
+				},
+				"Principal": {
+					"viewType": "XML",
+					"transition": "show",
+					"clearAggregation": true,
+					"viewName": "Medios",
+					"controlAggregation": "pages",
+					"controlId": "idAppControl"
+				},
+				"Home": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "Home",
+					"controlAggregation": "pages",
+					"controlId": "idAppControl"
+				},
+				"Medios": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"controlAggregation": "pages",
+					"controlId": "idAppControl",
+					"viewName": "Medios"
+				},
+				"PaqMonto": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "PaquetesPorMonto",
+					"controlAggregation": "pages",
+					"controlId": "idAppControl"
+				},
+				"PaqCantidad": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "PaquetesCantidad",
+					"controlId": "idAppControl",
+					"controlAggregation": "pages"
+				},
+				"Regalos": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "Regalos",
+					"controlAggregation": "pages",
+					"controlId": "idAppControl"
+				},
+				"EventoPromocional": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "EventoPromoconal",
+					"controlId": "idAppControl",
+					"controlAggregation": "pages"
+				}
+			}
+		}
+	},
+	"sap.platform.abap": {
+		"uri": "/sap/bc/ui5_ui5/sap/zmediosekt",
+		"_version": "1.1.0"
+	}
+}

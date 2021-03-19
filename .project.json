@@ -1,0 +1,29 @@
+{
+  "mockpreview": {
+    "mockUri": "/sap/opu/odata/sap/ZMEDIOS_SRV",
+    "metadataFilePath": "",
+    "loadJSONFiles": false,
+    "loadCustomRequests": false,
+    "mockRequestsFilePath": ""
+  },
+  "deploy": {
+    "destination": "FID",
+    "name": "ZMEDIOSEKT"
+  },
+  "projectType": [
+    "sap.watt.uitools.ide.fiori",
+    "com.watt.common.builder.sapui5clientbuild"
+  ],
+  "build": {
+    "buildRequired": true,
+    "targetFolder": "dist",
+    "lastBuildDateTime": "Thu, 11 Mar 2021 00:21:18 GMT"
+  },
+  "generation": [
+    {
+      "templateId": "servicecatalog.connectivityComponent",
+      "templateVersion": "0.0.0",
+      "dateTimeStamp": "Wed, 17 Mar 2021 18:12:36 GMT"
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+{
+    "resources": [
+        {
+            "name": "controller/Medios.controller.js"
+        },
+        {
+            "name": "controller/Descuentos.controller.js"
+        },
+        {
+            "name": "controller/EventoPromocional.controller.js"
+        },
+        {
+            "name": "controller/PaquetesPorMonto.controller.js"
+        },
+        {
+            "name": "controller/Home.controller.js"
+        },
+        {
+            "name": "controller/Regalos.controller.js"
+        },
+        {
+            "name": "controller/Plantillas.controller.js"
+        },
+        {
+            "name": "controller/PaquetesCantidad.controller.js"
+        },
+        {
+            "name": "controller/ReporteDescuentos.controller.js"
+        },
+        {
+            "name": "controller/Folios.controller.js"
+        },
+        {
+            "name": "Component-preload.js",
+            "merged": true
+        },
+        {
+            "name": "model/models.js"
+        },
+        {
+            "name": "neo-app.json"
+        },
+        {
+            "name": "Component.js"
+        },
+        {
+            "name": "i18n/i18n.properties",
+            "raw": "i18n/i18n.properties"
+        },
+        {
+            "name": "manifest.json"
+        },
+        {
+            "name": ".user.project.json"
+        },
+        {
+            "name": "resources.json",
+            "merged": true
+        },
+        {
+            "name": "columnsModel.json"
+        },
+        {
+            "name": "index.html"
+        },
+        {
+            "name": "view/PaquetesPorMonto.view.xml"
+        },
+        {
+            "name": "view/Home.view.xml"
+        },
+        {
+            "name": "view/DetallePaquetesMonto.fragment.xml"
+        },
+        {
+            "name": "view/DetallePaquetesCantidad.fragment.xml"
+        },
+        {
+            "name": "view/Medios.view.xml"
+        },
+        {
+            "name": "view/PaquetesCantidad.view.xml"
+        },
+        {
+            "name": "view/EventoPromoconal.view.xml"
+        },
+        {
+            "name": "view/ValueHelpDialog.fragment.xml"
+        },
+        {
+            "name": "view/DetalleRegalos.fragment.xml"
+        },
+        {
+            "name": "view/Folios.fragment.xml"
+        },
+        {
+            "name": "view/ReporteDescuentos.fragment.xml"
+        },
+        {
+            "name": "view/Plantillas.view.xml"
+        },
+        {
+            "name": "view/Regalos.view.xml"
+        },
+        {
+            "name": "view/Descuentos.view.xml"
+        },
+        {
+            "name": ".project.json"
+        },
+        {
+            "name": "css/style.css"
+        },
+        {
+            "name": "webapp/localService/ZMEDIOS_SRV/metadata.xml"
+        },
+        {
+            "name": "webapp/localService/metadata.xml"
+        }
+    ]
+}

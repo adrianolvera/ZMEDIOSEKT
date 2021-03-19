@@ -1,0 +1,71 @@
+<mvc:View controllerName="MEDIOS_EKT.controller.PaquetesPorMonto" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	displayBlock="true" xmlns:core="sap.ui.core">
+	<App id="idAppControl3">
+		<pages>
+			<Page title='Promociones' showNavButton="true" navButtonPress="onNavBack">
+				<Panel headerText="Regalos" class="sapUiResponsiveMargin" width="auto">
+					<content>
+						<l:VerticalLayout>
+							<Input placeholder="Descripción metodológica"></Input>
+							<Label text="Vigencia"/>
+							<l:HorizontalLayout>
+								<DateTimePicker id="DTP1" placeholder="Inicia" change="handleChange" class="sapUiSmallMarginBottom"/>
+								<DateTimePicker id="DTP2" placeholder="Finaliza" change="handleChange" class="sapUiSmallMarginBottom"/>
+								<!--								<ComboBox xmlns="sap.m" id="co_medios" items="{ path: '/ZTMEDIOSSet' }" placeholder="Seleccione Medio">
+									<items>
+										<core:Item xmlns:core="sap.ui.core" key="{ID}" text="{DESCRIPCION}"/>
+									</items>
+								</ComboBox>
+								<ComboBox xmlns="sap.m" id="co_plantilla" items="{ path: '/PlantillasSet' }" placeholder="Seleccione Plantilla">
+									<core:Item xmlns:core="sap.ui.core" key="{ID}" text="{DESCRIPCION}"/>
+								</ComboBox>-->
+								<ComboBox xmlns="sap.m" id="co_alcance" items="{ path: '/AlcanceSet' }" placeholder="Alcance" selectionChange="handleSelectionChange">
+									<core:Item xmlns:core="sap.ui.core" key="{pltyp}" text="{ptext}"/>
+								</ComboBox>
+								<MultiInput width="80%" id="Tiendas" valueHelpOnly="true" valueHelpRequest=".onValueHelpTiendas">
+									
+								</MultiInput>
+							</l:HorizontalLayout>
+							<l:HorizontalLayout>
+								<RadioButtonGroup id="rbg1" columns="1" width="100%" class="sapUiMediumMarginBottom">
+									<RadioButton id="RB1-1" text="Jerarquia" select="onSelect"/>
+									<RadioButton id="RB1-2" text="Códigos" select="onSelect"/>
+								</RadioButtonGroup>
+								<Vbox>
+									<MultiInput  id="Jer" valueHelpOnly="true" valueHelpRequest=".onValueHelpRequested"></MultiInput>
+									<Input placeholder="Seleccione códigos" id="Cod"></Input>
+								</Vbox>
+							</l:HorizontalLayout>
+							<Label text="Tipo de venta"/>
+							<Vbox>
+								<l:HorizontalLayout>
+									<CheckBox text="Crédito"/>
+									<ComboBox xmlns="sap.m" id="co_plazos" items="{ path: '/PlantillasSet' }" placeholder="Seleccione Plazos">
+										<core:Item xmlns:core="sap.ui.core" key="{ID}" text="{DESCRIPCION}"/>
+									</ComboBox>
+								</l:HorizontalLayout>
+								<l:HorizontalLayout>
+									<CheckBox text="Contado"/>
+									<ComboBox xmlns="sap.m" id="co_plazos2" items="{ path: '/PlantillasSet' }" placeholder="Plazos">
+										<core:Item xmlns:core="sap.ui.core" key="{ID}" text="{DESCRIPCION}"/>
+									</ComboBox>
+								</l:HorizontalLayout>
+							</Vbox>
+							<!--						<Vbox>
+							</Vbox>-->
+						</l:VerticalLayout>
+					</content>
+				</Panel>
+				<core:Fragment fragmentName="MEDIOS_EKT.view.DetalleRegalos" type="XML"/>
+				<footer>
+					<Toolbar>
+						<ToolbarSpacer/>
+						<Button text="Guardar" press="onPress" type="Guardar"/>
+						<Button text="Vista Previa" press="onPress" type="VistaP"/>
+						<Button text="Carga Masiva" press="onPress" type="Folios"/>
+					</Toolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

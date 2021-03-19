@@ -1,0 +1,68 @@
+<mvc:View controllerName="MEDIOS_EKT.controller.Plantillas" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:layout="sap.ui.layout"
+	xmlns:microchart="sap.suite.ui.microchart" xmlns:core="sap.ui.core">
+	<App id="idAppControl">
+		<pages>
+			<Page title="Selección de Plantilla Trend Card" showNavButton="true" navButtonPress="onNavBack">
+				<layout:VerticalLayout class="sapUiResponsiveMargin">
+					<layout:HorizontalLayout allowWrapping="true">
+						<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop" header="Descuentos" press=".onNavToDescuentos">
+							<tileContent>
+								<TileContent>
+									<content>
+										<core:Icon src="sap-icon://trend-down" size="40px" color="#031E48"></core:Icon>
+									</content>
+								</TileContent>
+							</tileContent>
+						</GenericTile>
+					</layout:HorizontalLayout>
+					<layout:HorizontalLayout allowWrapping="true">
+						<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop" header="Paquetes por monto"  press=".onNavToPaqMonto">
+							<tileContent>
+								<TileContent>
+									<content>
+										<core:Icon src="sap-icon://cart-3" size="40px" color="#031E48"></core:Icon>
+									</content>
+								</TileContent>
+							</tileContent>
+						</GenericTile>
+					</layout:HorizontalLayout>
+					<layout:HorizontalLayout allowWrapping="true">
+						<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop" header="Paquetes por cantidad (NxM)"  press=".onNavToPaqCan">
+							<tileContent>
+								<TileContent>
+									<content>
+										<core:Icon src="sap-icon://chalkboard" size="40px" color="#031E48"></core:Icon>
+									</content>
+								</TileContent>
+							</tileContent>
+						</GenericTile>
+					</layout:HorizontalLayout>
+				</layout:VerticalLayout>
+				<layout:VerticalLayout class="sapUiResponsiveMargin">
+					<layout:HorizontalLayout allowWrapping="true">
+						<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop" header="Regalos"  press=".onNavToRegalos">
+							<tileContent>
+								<TileContent>
+									<content>
+										<core:Icon src="sap-icon://present" size="40px" color="#031E48"></core:Icon>
+									</content>
+								</TileContent>
+							</tileContent>
+						</GenericTile>
+					</layout:HorizontalLayout>
+					<layout:HorizontalLayout allowWrapping="true">
+						<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop" header="Evento Promocional"  press=".onNavToEvento">
+							<tileContent>
+								<TileContent>
+									<content>
+										<core:Icon src="sap-icon://customer-financial-fact-sheet" size="40px" color="#031E48"></core:Icon>
+									</content>
+								</TileContent>
+							</tileContent>
+						</GenericTile>
+					</layout:HorizontalLayout>
+				</layout:VerticalLayout>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

@@ -1,0 +1,81 @@
+<mvc:View controllerName="MEDIOS_EKT.controller.Medios" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:layout="sap.ui.layout"
+	xmlns:microchart="sap.suite.ui.microchart" xmlns:core="sap.ui.core">
+	<App id="idAppControl">
+		<pages>
+			<Page title="Seleccionar medio" showNavButton="true" navButtonPress="onNavBack">
+				<Text id="text"/>
+				<layout:VerticalLayout class="sapUiResponsiveMargin">
+					<layout:HorizontalLayout allowWrapping="true">
+						<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop" header="Trend Card"  press=".onNavToPlantilla" id='Tit'>
+							<tileContent>
+								<TileContent>
+									<content>
+										<core:Icon src="sap-icon://opportunity" size="40px" color="#031E48"></core:Icon>
+									</content>
+								</TileContent>
+							</tileContent>
+						</GenericTile>
+					</layout:HorizontalLayout>
+					<layout:HorizontalLayout allowWrapping="true">
+						<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop" header="Baner" press=".onNavToPlantilla">
+							<tileContent>
+								<TileContent>
+									<content>
+										<core:Icon src="sap-icon://opportunity" size="40px" color="#031E48"></core:Icon>
+									</content>
+								</TileContent>
+							</tileContent>
+						</GenericTile>
+					</layout:HorizontalLayout>
+					<layout:HorizontalLayout allowWrapping="true">
+						<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop" header="Promoción especial"  press=".onNavToPlantilla">
+							<tileContent>
+								<TileContent>
+									<content>
+										<core:Icon src="sap-icon://opportunity" size="40px" color="#031E48"></core:Icon>
+									</content>
+								</TileContent>
+							</tileContent>
+						</GenericTile>
+					</layout:HorizontalLayout>
+				</layout:VerticalLayout>
+				<layout:VerticalLayout class="sapUiResponsiveMargin">
+					<layout:HorizontalLayout allowWrapping="true">
+						<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop" header="Mini Trend Card"  press=".onNavToPlantilla">
+							<tileContent>
+								<TileContent>
+									<content>
+										<core:Icon src="sap-icon://opportunity" size="40px" color="#031E48"></core:Icon>
+									</content>
+								</TileContent>
+							</tileContent>
+						</GenericTile>
+					</layout:HorizontalLayout>
+					<layout:HorizontalLayout allowWrapping="true">
+						<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop" header="Macro Trend Card" press=".onNavToPlantilla">
+							<tileContent>
+								<TileContent>
+									<content>
+										<core:Icon src="sap-icon://opportunity" size="40px" color="#031E48"></core:Icon>
+									</content>
+								</TileContent>
+							</tileContent>
+						</GenericTile>
+					</layout:HorizontalLayout>
+					<layout:HorizontalLayout allowWrapping="true">
+						<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop" header="TV"  press=".onNavToPlantilla">
+							<tileContent>
+								<TileContent>
+									<content>
+										<core:Icon src="sap-icon://opportunity" size="40px" color="#031E48"></core:Icon>
+									</content>
+								</TileContent>
+							</tileContent>
+						</GenericTile>
+					</layout:HorizontalLayout>
+				</layout:VerticalLayout>
+				<!--<core:Fragment fragmentName="MEDIOS_EKT.view.Folios" type="XML"/>-->
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

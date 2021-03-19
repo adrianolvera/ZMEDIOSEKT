@@ -1,0 +1,144 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZMEDIOS_SRV" xml:lang="es" sap:schema-version="1">
+            <EntityType Name="ZTMEDIOS" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Byte" Nullable="false" sap:unicode="false" sap:label="ID Medio" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DESCRIPCION" Type="Edm.String" Nullable="false" MaxLength="120" sap:unicode="false" sap:label="Descripción" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="Plantillas" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Byte" Nullable="false" sap:unicode="false" sap:label="ID Plantilla" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DESCRIPCION" Type="Edm.String" Nullable="false" MaxLength="120" sap:unicode="false" sap:label="Descripción" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="Alcance" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="pltyp"/>
+                </Key>
+                <Property Name="pltyp" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Componente del número de versión" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ptext" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Denominación" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="land1" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="País" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ztpalc" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Tipo de Alcance" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="T001W" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Werks"/>
+                </Key>
+                <Property Name="Werks" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Centro" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Name1" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Nombre 1" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="Plazos" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Zplazo"/>
+                </Key>
+                <Property Name="Zplazo" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Plazo ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zpldes" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Plazo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ztppla" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Tipo de Plazo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="TipoPlazo" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Ztsepl"/>
+                </Key>
+                <Property Name="Ztsepl" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Val.inferior" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Desc" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="Descrip.breve" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="TipoDescuento" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Ztdesc"/>
+                </Key>
+                <Property Name="Ztdesc" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Val.inferior" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Desc" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="Descrip.breve" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="FoliosEstatus" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Zproid"/>
+                </Key>
+                <Property Name="Zproid" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Folio Promoción" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZsitpomedioDe" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Tipo de Medio" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZsiplantillaDe" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Plantila de Medios" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Advertencias" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Neg Ventas" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zindat" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Fecha de Inicio de S" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zfidat" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Fecha Fin Sim" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Uname" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Usuario" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Erdat" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Creado el" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Frgct" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Denominación" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Eksgb" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Área compras" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Frgco" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Código liber." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zleido" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Advertencias Leidas Por el Ultimo Nivel" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="Creacion" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Zsmedioid"/>
+                </Key>
+                <Property Name="Zsmedioid" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="id de Medio" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zsitpomedio" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Tipo de Medio" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zsiplantilla" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Plantila de Medios" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zindat" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="ZINDAT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zintim" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="ZINTIM" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zfidat" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="ZFIDAT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zfitim" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="ZFITIM" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zsides" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Des. Sim. o Evt Esp." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zdestienda" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="ZDESTIENDA" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zmercprom" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="ZMERCPROM" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Znomarch" Type="Edm.String" Nullable="false" MaxLength="255" sap:unicode="false" sap:label="ZNOMARCH" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zprnom" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Nombre Promoción" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zstmedios" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Estatus de Medios" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Uname" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Usuario" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Erdat" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Creado el" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Aedat" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Modificado el" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Aename" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Modificado por" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Eksgb" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Área compras" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Frgco" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Código liber." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Land1" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="País" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zcont" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Contado" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zcred" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Crédito" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ztsepl" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Nivel de Sel. Plazos" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zdcred" Type="Edm.Decimal" Nullable="false" Precision="12" Scale="3" sap:unicode="false" sap:label="Descuento crédito" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zdcont" Type="Edm.Decimal" Nullable="false" Precision="12" Scale="3" sap:unicode="false" sap:label="Descuento contado" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ztdesc" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Tipo de Descuento" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ztpalc" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Tipo de Alcance" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Pltyp" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Lista precios" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Znivel" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="ZNIVEL" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zacumu" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="ZACUMU" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zlimuni" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="ZLIMUNI" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zunilim" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="ZUNILIM" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zmecta" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="ZMECTA" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zmxn" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="ZMXN" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zmcdat" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Fecha Máxima de Canj" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zpriex" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="ZPRIEX" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zgeval" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="ZGEVAL" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zsolov" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="ZSOLOV" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zfiori" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="ZFIORI" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zdr1" Type="Edm.Decimal" Nullable="false" Precision="12" Scale="3" sap:unicode="false" sap:label="ZDR1" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zdr2" Type="Edm.Decimal" Nullable="false" Precision="12" Scale="3" sap:unicode="false" sap:label="ZDR2" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zordenpro" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Orden" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zdeinagu" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="ZDEINAGU" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Matnr" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zplazo" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Plazo ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityContainer Name="ZMEDIOS_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="ZTMEDIOSSet" EntityType="ZMEDIOS_SRV.ZTMEDIOS" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="PlantillasSet" EntityType="ZMEDIOS_SRV.Plantillas" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="AlcanceSet" EntityType="ZMEDIOS_SRV.Alcance" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="T001WSet" EntityType="ZMEDIOS_SRV.T001W" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="PlazosSet" EntityType="ZMEDIOS_SRV.Plazos" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="TipoPlazoSet" EntityType="ZMEDIOS_SRV.TipoPlazo" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="TipoDescuentoSet" EntityType="ZMEDIOS_SRV.TipoDescuento" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="FoliosEstatusSet" EntityType="ZMEDIOS_SRV.FoliosEstatus" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="CreacionSet" EntityType="ZMEDIOS_SRV.Creacion" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+            </EntityContainer>
+            <atom:link
+                xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZMEDIOS_SRV/$metadata"/>
+                <atom:link
+                    xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZMEDIOS_SRV/$metadata"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx>

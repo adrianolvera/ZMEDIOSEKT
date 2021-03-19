@@ -1,0 +1,11 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:m="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<m:Page enableScrolling="false">
+		<m:content>
+			<m:Vbox>
+				<m:Label text="Reglas de la promociónn"/>
+				<m:MultiInput width="80%" id="Regalos" valueHelpOnly="true" valueHelpRequest=".onValueHelpTiendas"></m:MultiInput>
+			</m:Vbox>
+		</m:content>
+	</m:Page>
+</core:FragmentDefinition>

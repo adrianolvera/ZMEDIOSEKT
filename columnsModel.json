@@ -1,0 +1,13 @@
+{
+	"cols": [
+		{
+			"label": "Werks",
+			"template": "Werks",
+			"width": "5rem"
+		},
+		{
+			"label": "Name1",
+			"template": "Name1"
+		}
+	]
+}
