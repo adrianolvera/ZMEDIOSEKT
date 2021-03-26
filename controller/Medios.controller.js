@@ -9,15 +9,12 @@ sap.ui.define([
 			var sUrl = "/sap/opu/odata/sap/ZMEDIOS_SRV/";
 			var oModel = new sap.ui.model.odata.ODataModel(sUrl, true);
 
-			//	this.getView().setModel(oModel);
-			//	this.localModel = new sap.ui.model.json.JSONModel();
+	
 			sap.ui.getCore().setModel(oModel, "Medios");
 
-			var oRoute = sap.ui.core.UIComponent.getRouterFor(this);
-			oRoute.attachRouteMatched(this.routeMatched, this);
-
-			var model = this.getOwnerComponent().getModel();
-
+			this.oModel = sap.ui.getCore().getModel("MyModel");
+			this.getView().setModel(this.oModel);
+			this.MyModel = new sap.ui.model.json.JSONModel();
 		},
 
 		onNavBack: function(oEvent) {
@@ -30,24 +27,46 @@ sap.ui.define([
 			//	var plantillaId = oEvent.getSource().getBindingContext().getProperty("plantillaId");
 			var val = oEvent.oSource.sId;
 			var medios = val.substring(12);
+			var desc_medio;
+
+			var json = {};
+
+			if (medios === "1") {
+				desc_medio = "Tren card";
+			}
+
+			if (medios === "2") {
+				desc_medio = "Banner";
+			}
+
+			if (medios === "3") {
+				desc_medio = "Promoción especial";
+			}
+
+			if (medios === "4") {
+				desc_medio = "Mini Trend Card";
+			}
+
+			if (medios === "5") {
+				desc_medio = "Macro Trend Card";
+			}
+
+			if (medios === "6") {
+				desc_medio = "TV";
+			}
+			
+			json.id_medio = medios;
+			json.desc_medio = desc_medio;
+			//console.log(json.numero_ordine);
+			//this.MyModel.destroy();
+			this.MyModel.setData(json);
+			sap.ui.getCore().setModel(this.MyModel, "MyModel");
 
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.navTo("Plantillas", {
 				"medios": medios
 			});
-		},
 
-		routeMatched: function(oEvent) {
-			var oArguments = oEvent.getParameter("arguments");
-			var medios = oArguments.medios;
-
-			var model = new sap.ui.model.json.JSONModel({
-				foo: medios
-			});
-			this.getView().setModel(model);
-
-			//var oModel = new JSONModel({titulo: this.titulo});
-			// this.getView().setModel(oModel,"Plantilla");
 		}
 
 	});

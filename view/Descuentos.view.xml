@@ -2,8 +2,8 @@
 	displayBlock="true" xmlns:core="sap.ui.core">
 	<App id="idAppControl3">
 		<pages>
-			<Page title='Promociones' showNavButton="true" navButtonPress="onNavBack">
-				<Panel headerText="Descuentos Trend Card" class="sapUiResponsiveMargin" width="auto">
+			<Page title='{/desc_medio}' showNavButton="true" navButtonPress="onNavBack">
+				<Panel headerText="Descuentos" class="sapUiResponsiveMargin" width="auto">
 					<content>
 						<l:VerticalLayout>
 							<!--<Text text="*" class="mandatory"/>-->

@@ -2,7 +2,7 @@
 	xmlns:microchart="sap.suite.ui.microchart" xmlns:core="sap.ui.core">
 	<App id="idAppControl">
 		<pages>
-			<Page title="{Plantillas/titulo}" showNavButton="true" navButtonPress="onNavBack">
+			<Page title="{/desc_medio}" showNavButton="true" navButtonPress="onNavBack">
 				<layout:VerticalLayout class="sapUiResponsiveMargin">
 					<layout:HorizontalLayout allowWrapping="true">
 						<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop" header="Descuentos" press=".onNavToDescuentos" id ='1'>

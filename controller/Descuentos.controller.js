@@ -21,11 +21,7 @@ sap.ui.define([
 	return Controller.extend("MEDIOS_EKT.controller.Descuentos", {
 
 		onInit: function() {
-			//var sUrl = "/sap/opu/odata/sap/ZMEDIOS_SRV/";
-			//var oModel = new sap.ui.model.odata.ODataModel(sUrl, true);
 
-			/*			this.localModel = new sap.ui.model.json.JSONModel();
-						this.getView().setModel(this.localModel, "localModel");*/
 
 			this.getView().setModel(this.oModel, "oModel");
 			this.getView().byId("Cod").setVisible(false);
@@ -38,16 +34,26 @@ sap.ui.define([
 			//	this.oProductsModel = new JSONModel(sap.ui.require.toUrl("sap/ui/demo/mock") + "/products.json");
 			var oModel = new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/sap/ZMEDIOS_SRV");
 			sap.ui.getCore().setModel(oModel, "Medios");
+			
+			
+			 this.oModel = sap.ui.getCore().getModel("MyModel");
+			 this.getView().setModel(this.oModel);
+			 this.MyModel = new sap.ui.model.json.JSONModel();
 		},
 
 		onNavBack: function(oEvent) {
 			// var oRouter = this.getOwnerComponent().getRouter();
 			var val = oEvent.oSource.sId;
 			var plantilla = val.substring(12);
-			
+
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			oRouter.navTo("Plantillas", {"plantilla" : plantilla});	
-		
+
+			oRouter.navTo("Plantillas", {
+				"medios": sap.ui.getCore().getModel("MyModel").oData.id_plantilla
+			});
+
+			//oRouter.navTo("Plantillas", {"plantilla" : plantilla});	
+
 		},
 
 		onSelect: function(oEvent) {
@@ -169,8 +175,8 @@ sap.ui.define([
 				// CREATE******************
 				var zcred = this.getView().byId("zcred");
 				var obj = {};
-				obj.Zsitpomedio = '1';
-				obj.Zsiplantilla = '1';
+				obj.Zsitpomedio = sap.ui.getCore().getModel("MyModel").oData.id_medio; //"'1';
+				obj.Zsiplantilla = sap.ui.getCore().getModel("MyModel").oData.id_plantilla; //'1';
 				obj.Zmercprom = this.getView().byId("zmercprom").getValue();
 				obj.Zindat = this.getView().byId("zindat").getValue();
 				obj.Zfidat = this.getView().byId("zfidat").getValue();
@@ -201,23 +207,10 @@ sap.ui.define([
 						//  MessageBox.show(oHMessages.message, {
 						// 	icon: MessageBox.Icon.WARNING,
 						// 	title: "Stop"
-					 //});
+						//});
 					},
 					error: function(oError) {
 						alert("Folio creado error...");
-						// var a = JSON.parse(response.responseText);
-						// var errDetails = a.error.innererror.errordetails;
-						// Utilities.manageErrors(errDetails);
-
-						//alert("Folio creado er..."); // eslint-disable-line no-alert
-
-						//	var oResults = oData.data;
-						//	var hdrMessage = JSON.parse(oResults.headers["sap-message"]);
-
-						// MessageBox.show(hdrMessage.message, {
-						// 	icon: MessageBox.Icon.WARNING,
-						// 	title: "Stop"
-						// });
 
 					}
 				});

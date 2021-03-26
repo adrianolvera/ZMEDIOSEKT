@@ -2,7 +2,7 @@
 	displayBlock="true" xmlns:core="sap.ui.core">
 	<App id="idAppControl3">
 		<pages>
-			<Page title='Promociones' showNavButton="true" navButtonPress="onNavBack">
+			<Page title='{/desc_medio}' showNavButton="true" navButtonPress="onNavBack">
 				<Panel headerText="Regalos" class="sapUiResponsiveMargin" width="auto">
 					<content>
 						<l:VerticalLayout>
