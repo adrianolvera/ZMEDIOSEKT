@@ -9,7 +9,7 @@ sap.ui.define([
 			var sUrl = "/sap/opu/odata/sap/ZMEDIOS_SRV/";
 			var oModel = new sap.ui.model.odata.ODataModel(sUrl, true);
 			this.getView().setModel(oModel);
-			
+				//
 			this.oModel = sap.ui.getCore().getModel("MyModel");
 			this.getView().setModel(this.oModel);
 			this.MyModel = new sap.ui.model.json.JSONModel();

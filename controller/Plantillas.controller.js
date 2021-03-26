@@ -107,7 +107,7 @@ sap.ui.define([
 			
 			oRouter.navTo("PaqCantidad", {});
 		},
-
+	//
 		onNavToRegalos: function(oEvent) {
 			// var oRouter = this.getOwnerComponent().getRouter();
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);

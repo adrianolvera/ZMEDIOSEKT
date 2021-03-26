@@ -1,3 +1,4 @@
+
 <mvc:View controllerName="MEDIOS_EKT.controller.Medios" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:layout="sap.ui.layout"
 	xmlns:microchart="sap.suite.ui.microchart" xmlns:core="sap.ui.core">
 	<App id="idAppControl">

@@ -35,7 +35,7 @@ sap.ui.define([
 			var oModel = new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/sap/ZMEDIOS_SRV");
 			sap.ui.getCore().setModel(oModel, "Medios");
 			
-			
+		//		
 			 this.oModel = sap.ui.getCore().getModel("MyModel");
 			 this.getView().setModel(this.oModel);
 			 this.MyModel = new sap.ui.model.json.JSONModel();

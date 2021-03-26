@@ -2,7 +2,7 @@ sap.ui.define([
 	"sap/ui/core/mvc/Controller"
 ], function(Controller) {
 	"use strict";
-
+	//
 	return Controller.extend("MEDIOS_EKT.controller.Regalos", {
 
 		onInit: function() { 
