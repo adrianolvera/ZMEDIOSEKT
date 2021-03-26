@@ -2,10 +2,10 @@
 	xmlns:microchart="sap.suite.ui.microchart" xmlns:core="sap.ui.core">
 	<App id="idAppControl">
 		<pages>
-			<Page title="Selección de Plantilla Trend Card" showNavButton="true" navButtonPress="onNavBack">
+			<Page title="{Plantillas/titulo}" showNavButton="true" navButtonPress="onNavBack">
 				<layout:VerticalLayout class="sapUiResponsiveMargin">
 					<layout:HorizontalLayout allowWrapping="true">
-						<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop" header="Descuentos" press=".onNavToDescuentos">
+						<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop" header="Descuentos" press=".onNavToDescuentos" id ='1'>
 							<tileContent>
 								<TileContent>
 									<content>
@@ -16,7 +16,7 @@
 						</GenericTile>
 					</layout:HorizontalLayout>
 					<layout:HorizontalLayout allowWrapping="true">
-						<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop" header="Paquetes por monto"  press=".onNavToPaqMonto">
+						<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop" header="Paquetes por monto"  press=".onNavToPaqMonto" id ='2'>
 							<tileContent>
 								<TileContent>
 									<content>
@@ -27,7 +27,7 @@
 						</GenericTile>
 					</layout:HorizontalLayout>
 					<layout:HorizontalLayout allowWrapping="true">
-						<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop" header="Paquetes por cantidad (NxM)"  press=".onNavToPaqCan">
+						<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop" header="Paquetes por cantidad (NxM)"  press=".onNavToPaqCan" id ='4'>
 							<tileContent>
 								<TileContent>
 									<content>
@@ -40,7 +40,7 @@
 				</layout:VerticalLayout>
 				<layout:VerticalLayout class="sapUiResponsiveMargin">
 					<layout:HorizontalLayout allowWrapping="true">
-						<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop" header="Regalos"  press=".onNavToRegalos">
+						<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop" header="Regalos"  press=".onNavToRegalos" id ='5'>
 							<tileContent>
 								<TileContent>
 									<content>
@@ -51,7 +51,7 @@
 						</GenericTile>
 					</layout:HorizontalLayout>
 					<layout:HorizontalLayout allowWrapping="true">
-						<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop" header="Evento Promocional"  press=".onNavToEvento">
+						<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop" header="Evento Promocional"  press=".onNavToEvento" id ='6'>
 							<tileContent>
 								<TileContent>
 									<content>

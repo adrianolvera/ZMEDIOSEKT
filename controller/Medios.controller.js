@@ -13,6 +13,11 @@ sap.ui.define([
 			//	this.localModel = new sap.ui.model.json.JSONModel();
 			sap.ui.getCore().setModel(oModel, "Medios");
 
+			var oRoute = sap.ui.core.UIComponent.getRouterFor(this);
+			oRoute.attachRouteMatched(this.routeMatched, this);
+
+			var model = this.getOwnerComponent().getModel();
+
 		},
 
 		onNavBack: function(oEvent) {
@@ -22,12 +27,28 @@ sap.ui.define([
 		},
 		formatter: formatter,
 		onNavToPlantilla: function(oEvent) {
-		//	var plantillaId = oEvent.getSource().getBindingContext().getProperty("plantillaId");
-
-
+			//	var plantillaId = oEvent.getSource().getBindingContext().getProperty("plantillaId");
+			var val = oEvent.oSource.sId;
+			var medios = val.substring(12);
 
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			oRouter.navTo("Plantillas", { });
+			oRouter.navTo("Plantillas", {
+				"medios": medios
+			});
+		},
+
+		routeMatched: function(oEvent) {
+			var oArguments = oEvent.getParameter("arguments");
+			var medios = oArguments.medios;
+
+			var model = new sap.ui.model.json.JSONModel({
+				foo: medios
+			});
+			this.getView().setModel(model);
+
+			//var oModel = new JSONModel({titulo: this.titulo});
+			// this.getView().setModel(oModel,"Plantilla");
 		}
+
 	});
 });

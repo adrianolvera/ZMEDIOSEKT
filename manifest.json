@@ -115,7 +115,7 @@
 				},
 				{
 					"name": "Descuentos",
-					"pattern": "RouteDescuentos",
+					"pattern": "RouteDescuentos/{plantilla}",
 					"titleTarget": "",
 					"greedy": false,
 					"target": [
@@ -124,7 +124,7 @@
 				},
 				{
 					"name": "Plantillas",
-					"pattern": "RoutePlantillas",
+					"pattern": "RoutePlantillas/{medios}",
 					"titleTarget": "",
 					"greedy": false,
 					"target": [

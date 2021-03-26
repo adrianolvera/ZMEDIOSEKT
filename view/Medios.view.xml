@@ -6,7 +6,7 @@
 				<Text id="text"/>
 				<layout:VerticalLayout class="sapUiResponsiveMargin">
 					<layout:HorizontalLayout allowWrapping="true">
-						<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop" header="Trend Card"  press=".onNavToPlantilla" id='Tit'>
+						<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop" header="Trend Card"  press=".onNavToPlantilla" id='1'>
 							<tileContent>
 								<TileContent>
 									<content>
@@ -17,7 +17,7 @@
 						</GenericTile>
 					</layout:HorizontalLayout>
 					<layout:HorizontalLayout allowWrapping="true">
-						<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop" header="Baner" press=".onNavToPlantilla">
+						<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop" header="Baner" press=".onNavToPlantilla" id='2'>
 							<tileContent>
 								<TileContent>
 									<content>
@@ -28,7 +28,7 @@
 						</GenericTile>
 					</layout:HorizontalLayout>
 					<layout:HorizontalLayout allowWrapping="true">
-						<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop" header="Promoción especial"  press=".onNavToPlantilla">
+						<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop" header="Promoción especial"  press=".onNavToPlantilla" id='3'>
 							<tileContent>
 								<TileContent>
 									<content>
@@ -41,7 +41,7 @@
 				</layout:VerticalLayout>
 				<layout:VerticalLayout class="sapUiResponsiveMargin">
 					<layout:HorizontalLayout allowWrapping="true">
-						<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop" header="Mini Trend Card"  press=".onNavToPlantilla">
+						<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop" header="Mini Trend Card"  press=".onNavToPlantilla" id='4'>
 							<tileContent>
 								<TileContent>
 									<content>
@@ -52,7 +52,7 @@
 						</GenericTile>
 					</layout:HorizontalLayout>
 					<layout:HorizontalLayout allowWrapping="true">
-						<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop" header="Macro Trend Card" press=".onNavToPlantilla">
+						<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop" header="Macro Trend Card" press=".onNavToPlantilla" id='5'>
 							<tileContent>
 								<TileContent>
 									<content>
@@ -63,7 +63,7 @@
 						</GenericTile>
 					</layout:HorizontalLayout>
 					<layout:HorizontalLayout allowWrapping="true">
-						<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop" header="TV"  press=".onNavToPlantilla">
+						<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop" header="TV"  press=".onNavToPlantilla" id='6'>
 							<tileContent>
 								<TileContent>
 									<content>

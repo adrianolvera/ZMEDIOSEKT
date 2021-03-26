@@ -1,11 +1,21 @@
 /*global XLSX*/
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
+	'sap/ui/core/IconPool',
 	'sap/ui/model/json/JSONModel',
+	'sap/m/Link',
+	//'sap/m/MessageItem',
+	//'sap/m/MessageView',
+	'sap/m/Button',
+	'sap/m/Dialog',
+	'sap/m/Bar',
+	'sap/m/Text',
+	"sap/m/MessageBox",
 	'sap/m/ColumnListItem',
 	'sap/m/Label',
-	'sap/m/Token' //	"sap/m/MessageToast"
-], function(Controller, JSONMOdel, ColumnListItem, Label, Token) {
+	'sap/m/Token' //	"sap/m/MessageToast"//	
+	//'./Utilities'
+], function(Controller, IconPool, JSONMOdel, Link, Button, Dialog, Bar, Text, ColumnListItem, Label, Token) {
 	"use strict";
 
 	return Controller.extend("MEDIOS_EKT.controller.Descuentos", {
@@ -32,8 +42,12 @@ sap.ui.define([
 
 		onNavBack: function(oEvent) {
 			// var oRouter = this.getOwnerComponent().getRouter();
+			var val = oEvent.oSource.sId;
+			var plantilla = val.substring(12);
+			
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			oRouter.navTo("Plantillas", {});
+			oRouter.navTo("Plantillas", {"plantilla" : plantilla});	
+		
 		},
 
 		onSelect: function(oEvent) {
@@ -132,78 +146,11 @@ sap.ui.define([
 			this._oValueHelpDialog.destroy();
 		},
 
-		onUpload: function(e) {
-			this._import(e.getParameter("files") && e.getParameter("files")[0]);
-		},
-
 		oDataCall: function(oEvent) {
 			// call ovice's function based on which button is clicked.
-			this._checkMandatory();
 			//this._checkData();
-		
+			this._checkMandatory();
 
-			var myModel = sap.ui.getCore().getModel("Medios");
-			myModel.setHeaders({
-				"X-Requested-With": "X"
-			});
-			// 
-			// CREATE******************
-			var zcred = this.getView().byId("zcred");
-			var obj = {};
-			obj.Zsitpomedio = '1';
-			obj.Zsiplantilla = '1';
-			obj.Zmercprom = this.getView().byId("zmercprom").getValue();
-			obj.Zindat = this.getView().byId("zindat").getValue();
-			obj.Zfidat = this.getView().byId("zfidat").getValue();
-			obj.Ztsepl = this.getView().byId("ztsepl").getSelectedItem().getKey();
-			obj.Pltyp = this.getView().byId("co_alcance").getSelectedItem().getKey();
-			obj.Zdcred = this.getView().byId("zdcred").getValue();
-			obj.Ztdesc = this.getView().byId("ztdesc").getSelectedItem().getKey();
-			obj.Zplazo = this.getView().byId("co_plazos2").getSelectedItem().getKey();
-
-			if (zcred.getSelected() === true) {
-				obj.Zcred = 'X';
-			}
-
-			obj.Matnr = this.getView().byId("Cod").getValue();
-			myModel.create("/CreacionSet", obj, {
-				success: function(oData, oResponse) {
-
-					alert("Folio creado..."); // eslint-disable-line no-alert
-				},
-				error: function(oData, oResponse) {
-
-					alert("Folio creado..."); // eslint-disable-line no-alert
-				}
-			});
-
-		},
-		_import: function(file) {
-			//var that = this;
-			var excelData = {};
-			if (file && window.FileReader) {
-				var reader = new FileReader();
-				reader.onload = function(e) {
-					var data = e.target.result;
-					var workbook = XLSX.read(data, {
-						type: 'binary'
-					});
-					workbook.SheetNames.forEach(function(sheetName) {
-						// Here is your object for every sheet in workbook
-						excelData = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
-
-					});
-					// Setting the data to the  model 
-					this.oModel.setData({
-						items: excelData
-					});
-					this.oModel.refresh(true);
-				};
-				reader.onerror = function(ex) {
-					console.log(ex);
-				};
-				reader.readAsBinaryString(file);
-			}
 		},
 
 		_checkMandatory: function() {
@@ -213,8 +160,69 @@ sap.ui.define([
 			if (passedValidation === false) {
 				//show an error message, rest of code will not execute.
 				return false;
-			}
+			} else {
+				var myModel = sap.ui.getCore().getModel("Medios");
+				myModel.setHeaders({
+					"X-Requested-With": "X"
+				});
+				// 
+				// CREATE******************
+				var zcred = this.getView().byId("zcred");
+				var obj = {};
+				obj.Zsitpomedio = '1';
+				obj.Zsiplantilla = '1';
+				obj.Zmercprom = this.getView().byId("zmercprom").getValue();
+				obj.Zindat = this.getView().byId("zindat").getValue();
+				obj.Zfidat = this.getView().byId("zfidat").getValue();
+				obj.Ztsepl = this.getView().byId("ztsepl").getSelectedItem().getKey();
+				obj.Pltyp = this.getView().byId("co_alcance").getSelectedItem().getKey();
+				obj.Zdcred = this.getView().byId("zdcred").getValue();
+				obj.Ztdesc = this.getView().byId("ztdesc").getSelectedItem().getKey();
+				obj.Zplazo = this.getView().byId("co_plazos2").getSelectedItem().getKey();
 
+				if (zcred.getSelected() === true) {
+					obj.Zcred = 'X';
+				}
+
+				obj.Matnr = this.getView().byId("Cod").getValue();
+
+				myModel.create("/CreacionSet", obj, {
+					async: false,
+					success: function(oData, response) {
+
+						alert("Folio creado ex..."); // eslint-disable-line no-alert
+
+						var oHMessages = JSON.parse(response.headers["sap-message"]);
+
+						// var a = JSON.parse(response.responseText);
+						// var errDetails = a.error.innererror.errordetails;
+						// Utilities.manageErrors(errDetails);
+
+						//  MessageBox.show(oHMessages.message, {
+						// 	icon: MessageBox.Icon.WARNING,
+						// 	title: "Stop"
+					 //});
+					},
+					error: function(oError) {
+						alert("Folio creado error...");
+						// var a = JSON.parse(response.responseText);
+						// var errDetails = a.error.innererror.errordetails;
+						// Utilities.manageErrors(errDetails);
+
+						//alert("Folio creado er..."); // eslint-disable-line no-alert
+
+						//	var oResults = oData.data;
+						//	var hdrMessage = JSON.parse(oResults.headers["sap-message"]);
+
+						// MessageBox.show(hdrMessage.message, {
+						// 	icon: MessageBox.Icon.WARNING,
+						// 	title: "Stop"
+						// });
+
+					}
+				});
+
+			}
 		},
 
 		returnIdListOfRequiredFields: function() {
@@ -251,8 +259,10 @@ sap.ui.define([
 			if (oFinicio.getValue() < oFfin.getValue()) {
 				oFinicio.setValueState(sap.ui.core.ValueState.None);
 			} else {
-				oFinicio.setValueState(sap.ui.core.ValueState.Error);
+				oFinicio.setValueState("Error");
 				oFinicio.setValueStateText("Fecha incorrecta");
+				//show an error message, rest of code will not execute.
+				return false;
 			}
 		}
 
