@@ -1,9 +1,8 @@
-
 <mvc:View controllerName="MEDIOS_EKT.controller.PaquetesPorMonto" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
 	displayBlock="true" xmlns:core="sap.ui.core">
 	<App id="idAppControl3">
 		<pages>
-			<Page title='{/desc_medio}' showNavButton="true" navButtonPress="onNavBack">
+			<Page title='{Medios>/desc_medio}' showNavButton="true" navButtonPress="onNavBack">
 				<Panel headerText="Paquetes por monto" class="sapUiResponsiveMargin" width="auto">
 					<content>
 						<l:VerticalLayout>

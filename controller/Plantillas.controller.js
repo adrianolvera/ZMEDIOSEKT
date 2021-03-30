@@ -12,9 +12,9 @@ sap.ui.define([
 			var oModel = new sap.ui.model.odata.ODataModel(sUrl, true);
 			this.getView().setModel(oModel);
 
-			this.oModel = sap.ui.getCore().getModel("MyModel");
+			this.oModel = sap.ui.getCore().getModel("Medios");
 			this.getView().setModel(this.oModel);
-			this.MyModel = new sap.ui.model.json.JSONModel();
+			this.Medios = new sap.ui.model.json.JSONModel();
 
 		},
 		onNavBack: function(oEvent) {
@@ -37,16 +37,16 @@ sap.ui.define([
 
 			var json = {};
 
-			id_medio = sap.ui.getCore().getModel("MyModel").oData.id_medio;
+			id_medio = sap.ui.getCore().getModel("Medios").oData.id_medio;
 			json.id_medio = id_medio;
 			
-			desc_medio = sap.ui.getCore().getModel("MyModel").oData.desc_medio;
+			desc_medio = sap.ui.getCore().getModel("Medios").oData.desc_medio;
 			json.desc_medio = desc_medio;
 			
 			json.id_plantilla = '2';
 
-			this.MyModel.setData(json);
-			sap.ui.getCore().setModel(this.MyModel, "MyModel");
+			this.Medios.setData(json);
+			sap.ui.getCore().setModel(this.Medios, "Medios");
 			
 			
 			oRouter.navTo("PaqMonto", {});
@@ -65,16 +65,16 @@ sap.ui.define([
 
 			var json = {};
 
-			id_medio = sap.ui.getCore().getModel("MyModel").oData.id_medio;
+			id_medio = sap.ui.getCore().getModel("Medios").oData.id_medio;
 			json.id_medio = id_medio;
 			
-			desc_medio = sap.ui.getCore().getModel("MyModel").oData.desc_medio;
+			desc_medio = sap.ui.getCore().getModel("Medios").oData.desc_medio;
 			json.desc_medio = desc_medio;
 			
 			json.id_plantilla = '1';
 
-			this.MyModel.setData(json);
-			sap.ui.getCore().setModel(this.MyModel, "MyModel");
+			this.Medios.setData(json);
+			sap.ui.getCore().setModel(this.Medios, "Medios");
 
 			oRouter.navTo("Descuentos", {
 				"plantilla": plantilla
@@ -94,16 +94,16 @@ sap.ui.define([
 
 			var json = {};
 
-			id_medio = sap.ui.getCore().getModel("MyModel").oData.id_medio;
+			id_medio = sap.ui.getCore().getModel("Medios").oData.id_medio;
 			json.id_medio = id_medio;
 			
-			desc_medio = sap.ui.getCore().getModel("MyModel").oData.desc_medio;
+			desc_medio = sap.ui.getCore().getModel("Medios").oData.desc_medio;
 			json.desc_medio = desc_medio;
 			
 			json.id_plantilla = '4';
 
-			this.MyModel.setData(json);
-			sap.ui.getCore().setModel(this.MyModel, "MyModel");
+			this.Medios.setData(json);
+			sap.ui.getCore().setModel(this.Medios, "Medios");
 			
 			oRouter.navTo("PaqCantidad", {});
 		},
@@ -120,16 +120,16 @@ sap.ui.define([
 
 			var json = {};
 
-			id_medio = sap.ui.getCore().getModel("MyModel").oData.id_medio;
+			id_medio = sap.ui.getCore().getModel("Medios").oData.id_medio;
 			json.id_medio = id_medio;
 			
-			desc_medio = sap.ui.getCore().getModel("MyModel").oData.desc_medio;
+			desc_medio = sap.ui.getCore().getModel("Medios").oData.desc_medio;
 			json.desc_medio = desc_medio;
 			
 			json.id_plantilla = '5';
 
-			this.MyModel.setData(json);
-			sap.ui.getCore().setModel(this.MyModel, "MyModel");
+			this.Medios.setData(json);
+			sap.ui.getCore().setModel(this.Medios, "Medios");
 			
 			oRouter.navTo("Regalos", {});
 		},
@@ -146,16 +146,16 @@ sap.ui.define([
 
 			var json = {};
 
-			id_medio = sap.ui.getCore().getModel("MyModel").oData.id_medio;
+			id_medio = sap.ui.getCore().getModel("Medios").oData.id_medio;
 			json.id_medio = id_medio;
 			
-			desc_medio = sap.ui.getCore().getModel("MyModel").oData.desc_medio;
+			desc_medio = sap.ui.getCore().getModel("Medios").oData.desc_medio;
 			json.desc_medio = desc_medio;
 			
 			json.id_plantilla = '6';
 
-			this.MyModel.setData(json);
-			sap.ui.getCore().setModel(this.MyModel, "MyModel");			
+			this.Medios.setData(json);
+			sap.ui.getCore().setModel(this.Medios, "Medios");			
 			
 			oRouter.navTo("EventoPromocional", {});
 		},

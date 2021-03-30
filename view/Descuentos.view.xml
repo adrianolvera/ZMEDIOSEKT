@@ -1,9 +1,8 @@
-
 <mvc:View controllerName="MEDIOS_EKT.controller.Descuentos" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
 	displayBlock="true" xmlns:core="sap.ui.core">
 	<App id="idAppControl3">
 		<pages>
-			<Page title='{/desc_medio}' showNavButton="true" navButtonPress="onNavBack">
+			<Page title="{Medios>/desc_medio}" showNavButton="true" navButtonPress="onNavBack">
 				<Panel headerText="Descuentos" class="sapUiResponsiveMargin" width="auto">
 					<content>
 						<l:VerticalLayout>
@@ -14,7 +13,7 @@
 								<DateTimePicker id="zindat" placeholder="Inicia" change="handleChange" class="sapUiSmallMarginBottom"/>
 								<DateTimePicker id="zfidat" placeholder="Finaliza" change="handleChange" class="sapUiSmallMarginBottom"/>
 								<ComboBox xmlns="sap.m" id="co_alcance" items="{ path: '/AlcanceSet' }" placeholder="Alcance" selectionChange="handleSelectionChange">
-									<core:Item xmlns:core="sap.ui.core" key="{pltyp}" text="{ptext}"/>
+									<core:Item  key="{pltyp}" text="{ptext}"/>
 								</ComboBox>
 								<MultiInput placeholder="Tiendas" width="30%" id="Tiendas" valueHelpOnly="true" valueHelpRequest=".onValueHelpTiendas"></MultiInput>
 							</l:HorizontalLayout>

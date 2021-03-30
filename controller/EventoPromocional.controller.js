@@ -19,7 +19,7 @@ sap.ui.define([
 			// var oRouter = this.getOwnerComponent().getRouter();
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.navTo("Plantillas", {
-				"medios": sap.ui.getCore().getModel("MyModel").oData.id_plantilla
+				"medios": sap.ui.getCore().getModel("Medios").oData.id_plantilla
 			});
 		}
 	});

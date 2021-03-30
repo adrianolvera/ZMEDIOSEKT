@@ -13,32 +13,35 @@ sap.ui.define([
 	"sap/m/MessageBox",
 	'sap/m/ColumnListItem',
 	'sap/m/Label',
-	'sap/m/Token' //	"sap/m/MessageToast"//	
+	'sap/m/Token', //	"sap/m/MessageToast"//	
+	'sap/ui/model/BindingMode',
+	'sap/ui/core/message/Message'
 	//'./Utilities'
-], function(Controller, IconPool, JSONMOdel, Link, Button, Dialog, Bar, Text, ColumnListItem, Label, Token) {
+], function(Controller, IconPool, JSONMOdel, Link, Button, Dialog, Bar, Text, ColumnListItem, Label, Token,BindingMode,Message) {
 	"use strict";
 
 	return Controller.extend("MEDIOS_EKT.controller.Descuentos", {
 
 		onInit: function() {
 
-
-			this.getView().setModel(this.oModel, "oModel");
 			this.getView().byId("Cod").setVisible(false);
 			this.getView().byId("Tiendas").setVisible(false);
-
 			var JSONModel = sap.ui.require("sap/ui/model/json/JSONModel");
-
 			this.oColModel = new JSONModel(jQuery.sap.getResourcePath("MEDIOS_EKT") + "/columnsModel.json");
 
 			//	this.oProductsModel = new JSONModel(sap.ui.require.toUrl("sap/ui/demo/mock") + "/products.json");
+
+			var oModel = new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/sap/ZMEDIOS_SRV");
+			this.getView().setModel(this.oModel);
+			
+			this.oModel = sap.ui.getCore().getModel("Medios");
+			this.getView().setModel(this.oModel, "Medios");
+			
+			this.Medios = new sap.ui.model.json.JSONModel();
+			
 			var oModel = new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/sap/ZMEDIOS_SRV");
 			sap.ui.getCore().setModel(oModel, "Medios");
-			
-		//		
-			 this.oModel = sap.ui.getCore().getModel("MyModel");
-			 this.getView().setModel(this.oModel);
-			 this.MyModel = new sap.ui.model.json.JSONModel();
+
 		},
 
 		onNavBack: function(oEvent) {
@@ -49,7 +52,7 @@ sap.ui.define([
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 
 			oRouter.navTo("Plantillas", {
-				"medios": sap.ui.getCore().getModel("MyModel").oData.id_plantilla
+				"medios": sap.ui.getCore().getModel("Medios").oData.id_plantilla
 			});
 
 			//oRouter.navTo("Plantillas", {"plantilla" : plantilla});	
@@ -175,8 +178,8 @@ sap.ui.define([
 				// CREATE******************
 				var zcred = this.getView().byId("zcred");
 				var obj = {};
-				obj.Zsitpomedio = sap.ui.getCore().getModel("MyModel").oData.id_medio; //"'1';
-				obj.Zsiplantilla = sap.ui.getCore().getModel("MyModel").oData.id_plantilla; //'1';
+				obj.Zsitpomedio = sap.ui.getCore().getModel("Medios").oData.id_medio; //"'1';
+				obj.Zsiplantilla = sap.ui.getCore().getModel("Medios").oData.id_plantilla; //'1';
 				obj.Zmercprom = this.getView().byId("zmercprom").getValue();
 				obj.Zindat = this.getView().byId("zindat").getValue();
 				obj.Zfidat = this.getView().byId("zfidat").getValue();

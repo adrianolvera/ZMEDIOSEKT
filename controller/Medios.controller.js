@@ -8,13 +8,8 @@ sap.ui.define([
 		onInit: function() {
 			var sUrl = "/sap/opu/odata/sap/ZMEDIOS_SRV/";
 			var oModel = new sap.ui.model.odata.ODataModel(sUrl, true);
-
-	
 			sap.ui.getCore().setModel(oModel, "Medios");
-
-			this.oModel = sap.ui.getCore().getModel("MyModel");
-			this.getView().setModel(this.oModel);
-			this.MyModel = new sap.ui.model.json.JSONModel();
+			this.oModel = new sap.ui.model.json.JSONModel();
 		},
 
 		onNavBack: function(oEvent) {
@@ -59,8 +54,8 @@ sap.ui.define([
 			json.desc_medio = desc_medio;
 			//console.log(json.numero_ordine);
 			//this.MyModel.destroy();
-			this.MyModel.setData(json);
-			sap.ui.getCore().setModel(this.MyModel, "MyModel");
+			this.oModel.setData(json);
+			sap.ui.getCore().setModel(this.oModel, "Medios");
 
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.navTo("Plantillas", {
