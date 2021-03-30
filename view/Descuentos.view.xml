@@ -58,6 +58,7 @@
 						<Button xmlns="sap.m" text="Guardar" press="oDataCall" type="Guardar"/>
 						<Button text="Vista Previa" press="onPress" type="VistaP"/>
 						<Button text="Carga Masiva" press="onPress" type="Folios"/>
+						  <Button icon="sap-icon://alert" text="{= ${message>/}.length }" visible="{= ${message>/}.length > 0 }" type="Emphasized" press="onMessagePopoverPress"/>
 					</Toolbar>
 				</footer>
 			</Page>

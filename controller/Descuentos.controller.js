@@ -17,7 +17,7 @@ sap.ui.define([
 	'sap/ui/model/BindingMode',
 	'sap/ui/core/message/Message'
 	//'./Utilities'
-], function(Controller, IconPool, JSONMOdel, Link, Button, Dialog, Bar, Text, ColumnListItem, Label, Token,BindingMode,Message) {
+], function(Controller, IconPool, JSONMOdel, Link, Button, Dialog, Bar, Text, ColumnListItem, Label, Token, BindingMode, Message) {
 	"use strict";
 
 	return Controller.extend("MEDIOS_EKT.controller.Descuentos", {
@@ -31,16 +31,43 @@ sap.ui.define([
 
 			//	this.oProductsModel = new JSONModel(sap.ui.require.toUrl("sap/ui/demo/mock") + "/products.json");
 
-			var oModel = new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/sap/ZMEDIOS_SRV");
-			this.getView().setModel(this.oModel);
-			
+			// var oModel = new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/sap/ZMEDIOS_SRV");
+			// this.getView().setModel(this.oModel);
+
 			this.oModel = sap.ui.getCore().getModel("Medios");
 			this.getView().setModel(this.oModel, "Medios");
-			
+
 			this.Medios = new sap.ui.model.json.JSONModel();
-			
+
 			var oModel = new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/sap/ZMEDIOS_SRV");
 			sap.ui.getCore().setModel(oModel, "Medios");
+
+			///////////////////////////////
+
+			var oMessageManager, oModel, oView;
+
+			//Obtenemos la vista actual
+			oView = this.getView();
+
+			// Iniciamos un modelo de mensajes (donde guardaremos los datos)
+			oMessageManager = sap.ui.getCore().getMessageManager();
+			oView.setModel(oMessageManager.getMessageModel(), "message");
+
+			// Registramos el disparador a la vista actual
+			oMessageManager.registerObject(oView, true);
+
+			// create a default model with somde demo data (esto solo es para los campos de input)
+			oModel = new JSONModel({
+				MandatoryInputValue: "",
+				DateValue: null,
+				IntegerValue: undefined,
+				Dummy: ""
+			});
+			//Fijamos el modelo bidireccional
+		//	oModel.setDefaultBindingMode(BindingMode.TwoWay);
+			//Añadimos el modelo a la vista
+		//	oView.setModel(oModel);
+		sap.ui.getCore().setModel(oView, "message");
 
 		},
 
@@ -178,8 +205,8 @@ sap.ui.define([
 				// CREATE******************
 				var zcred = this.getView().byId("zcred");
 				var obj = {};
-				obj.Zsitpomedio = sap.ui.getCore().getModel("Medios").oData.id_medio; //"'1';
-				obj.Zsiplantilla = sap.ui.getCore().getModel("Medios").oData.id_plantilla; //'1';
+				obj.Zsitpomedio = this.getView().oModels.Medios.oData.id_medio; //"'1';
+				obj.Zsiplantilla = this.getView().oModels.Medios.oData.id_plantilla; //'1';
 				obj.Zmercprom = this.getView().byId("zmercprom").getValue();
 				obj.Zindat = this.getView().byId("zindat").getValue();
 				obj.Zfidat = this.getView().byId("zfidat").getValue();
@@ -260,6 +287,15 @@ sap.ui.define([
 				//show an error message, rest of code will not execute.
 				return false;
 			}
+		},
+
+		_getMessagePopover: function() {
+			// create popover lazily (singleton)
+			if (!this._oMessagePopover) {
+				this._oMessagePopover = sap.ui.xmlfragment(this.getView().getId(), "MEDIOS_EKT.view.MessageError", this);
+				this.getView().addDependent(this._oMessagePopover);
+			}
+			return this._oMessagePopover;
 		}
 
 	});
