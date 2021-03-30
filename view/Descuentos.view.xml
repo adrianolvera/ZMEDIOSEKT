@@ -7,7 +7,7 @@
 					<content>
 						<l:VerticalLayout>
 							<!--<Text text="*" class="mandatory"/>-->
-							<Input required="true" id="zmercprom" placeholder="Descripción metodológica"></Input>
+							<Input required="true" id="zmercprom" placeholder="HOLA candy Descripción metodológica"></Input>
 							<Label required="true" text="Vigencia"/>
 							<l:HorizontalLayout>
 								<DateTimePicker id="zindat" placeholder="Inicia" change="handleChange" class="sapUiSmallMarginBottom"/>
