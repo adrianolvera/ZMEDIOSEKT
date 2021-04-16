@@ -6,11 +6,12 @@
 				<Panel headerText="Evento Promocional" class="sapUiResponsiveMargin" width="auto">
 					<content>
 						<l:VerticalLayout>
-							<Input description="Descripción metodológica"></Input>
+							<Input required="true" id="zmercprom" placeholder="Título de Comunicación"></Input>
 							<Label text="Vigencia"/>
 							<l:HorizontalLayout>
-								<DateTimePicker id="DTP1" placeholder="Inicia" change="handleChange" class="sapUiSmallMarginBottom"/>
-								<DateTimePicker id="DTP2" placeholder="Finaliza" change="handleChange" class="sapUiSmallMarginBottom"/>
+								<DateTimePicker id="zindat" placeholder="Inicia" change="handleChange" class="sapUiSmallMarginBottom"
+									value="{ path: '/MandatoryInputValue', type: 'sap.ui.model.type.String', constraints: { minLength: 3 } }"/>
+								<DateTimePicker id="zfidat" placeholder="Finaliza" change="handleChange" class="sapUiSmallMarginBottom"/>
 								<!--								<ComboBox xmlns="sap.m" id="co_medios" items="{ path: '/ZTMEDIOSSet' }" placeholder="Seleccione Medio">
 									<items>
 										<core:Item xmlns:core="sap.ui.core" key="{ID}" text="{DESCRIPCION}"/>
@@ -22,9 +23,7 @@
 								<ComboBox xmlns="sap.m" id="co_alcance" items="{ path: '/AlcanceSet' }" placeholder="Alcance" selectionChange="handleSelectionChange">
 									<core:Item xmlns:core="sap.ui.core" key="{pltyp}" text="{ptext}"/>
 								</ComboBox>
-								<MultiInput width="80%" id="Tiendas" valueHelpOnly="true" valueHelpRequest=".onValueHelpTiendas">
-									
-								</MultiInput>
+								<MultiInput width="80%" id="Tiendas" valueHelpOnly="true" valueHelpRequest=".onValueHelpTiendas"></MultiInput>
 							</l:HorizontalLayout>
 							<l:HorizontalLayout>
 								<RadioButtonGroup id="rbg1" columns="1" width="100%" class="sapUiMediumMarginBottom">
@@ -32,23 +31,29 @@
 									<RadioButton id="RB1-2" text="Códigos" select="onSelect"/>
 								</RadioButtonGroup>
 								<Vbox>
-									<MultiInput  id="Jer" valueHelpOnly="true" valueHelpRequest=".onValueHelpRequested"></MultiInput>
-									<Input description="Seleccione códigos" id="Cod"></Input>
+									<MultiInput id="Jer" placeholder="Jerarquía" valueHelpOnly="true" valueHelpRequest=".onValueHelpRequested"></MultiInput>
+									<!--<MultiInput  id="Cod"  valueHelpOnly="true" valueHelpRequest=".onValueHelpRequested"></MultiInput>-->
+									<ComboBox xmlns="sap.m" id="Cod" items="{ path: '/MaterialesSet' }" placeholder="Material">
+										<core:Item xmlns:core="sap.ui.core" key="{Matnr}" text="{Maktx}"/>
+									</ComboBox>
+									<!--<Input description="Seleccione códigos" id="Cod"></Input>-->
 								</Vbox>
 							</l:HorizontalLayout>
 							<Label text="Tipo de venta"/>
 							<Vbox>
 								<l:HorizontalLayout>
-									<CheckBox text="Crédito"/>
-									<ComboBox xmlns="sap.m" id="co_plazos" items="{ path: '/PlantillasSet' }" placeholder="Seleccione Plazos">
-										<core:Item xmlns:core="sap.ui.core" key="{ID}" text="{DESCRIPCION}"/>
-									</ComboBox>
+									<CheckBox id="zcred" text="Crédito"/>
+									<Hbox>
+										<ComboBox xmlns="sap.m" id="ztsepl" items="{ path: '/TipoPlazoSet' }" placeholder="Seleccione Plazos">
+											<core:Item xmlns:core="sap.ui.core" key="{Ztsepl}" text="{Desc}"/>
+										</ComboBox>
+										<ComboBox xmlns="sap.m" id="co_plazos2" items="{ path: '/PlazosSet' }" placeholder="Plazos">
+											<core:Item xmlns:core="sap.ui.core" key="{Zplazo}" text="{Zpldes}"/>
+										</ComboBox>
+									</Hbox>
 								</l:HorizontalLayout>
 								<l:HorizontalLayout>
-									<CheckBox text="Contado"/>
-									<ComboBox xmlns="sap.m" id="co_plazos2" items="{ path: '/PlantillasSet' }" placeholder="Plazos">
-										<core:Item xmlns:core="sap.ui.core" key="{ID}" text="{DESCRIPCION}"/>
-									</ComboBox>
+									<CheckBox id="zcont" text="Contado"/>
 								</l:HorizontalLayout>
 							</Vbox>
 							<!--						<Vbox>
@@ -60,7 +65,7 @@
 				<footer>
 					<Toolbar>
 						<ToolbarSpacer/>
-						<Button text="Guardar" press="onPress" type="Guardar"/>
+						<Button xmlns="sap.m" text="Guardar" press="oDataCall" type="Guardar"/>
 						<Button text="Vista Previa" press="onPress" type="VistaP"/>
 						<Button text="Carga Masiva" press="onPress" type="Folios"/>
 					</Toolbar>

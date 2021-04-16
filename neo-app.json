@@ -23,10 +23,10 @@
       "path": "/sap/opu/odata",
       "target": {
         "type": "destination",
-        "name": "FID",
+        "name": "FIQ",
         "entryPath": "/sap/opu/odata"
       },
-      "description": "FID"
+      "description": "FIQ"
     },
     {
       "path": "/sap/bc/ui5_ui5",

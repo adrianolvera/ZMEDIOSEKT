@@ -58,9 +58,10 @@ sap.ui.define([
 			sap.ui.getCore().setModel(this.oModel, "Medios");
 
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			oRouter.navTo("Plantillas", {
-				"medios": medios
-			});
+			oRouter.navTo("Plantillas", {});
+			// oRouter.navTo("Plantillas", {
+			// 	"medios": medios
+			// });
 
 		}
 

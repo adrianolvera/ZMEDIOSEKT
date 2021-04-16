@@ -75,10 +75,13 @@ sap.ui.define([
 
 			this.Medios.setData(json);
 			sap.ui.getCore().setModel(this.Medios, "Medios");
-
-			oRouter.navTo("Descuentos", {
-				"plantilla": plantilla
-			});
+			
+				oRouter.navTo("Descuentos", {});
+			
+			
+			// oRouter.navTo("Descuentos", {
+			// 	"plantilla": plantilla
+			// });
 
 		},
 
