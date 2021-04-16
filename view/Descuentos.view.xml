@@ -7,13 +7,14 @@
 					<content>
 						<l:VerticalLayout>
 							<!--<Text text="*" class="mandatory"/>-->
-							<Input required="true" id="zmercprom" placeholder="HOLA candy Descripción metodológica"></Input>
+							<Input required="true" id="zmercprom" placeholder="Título de Comunicación"></Input>
 							<Label required="true" text="Vigencia"/>
 							<l:HorizontalLayout>
-								<DateTimePicker id="zindat" placeholder="Inicia" change="handleChange" class="sapUiSmallMarginBottom"/>
+								<DateTimePicker id="zindat" placeholder="Inicia" change="handleChange" class="sapUiSmallMarginBottom"
+									value="{ path: '/MandatoryInputValue', type: 'sap.ui.model.type.String', constraints: { minLength: 3 } }"/>
 								<DateTimePicker id="zfidat" placeholder="Finaliza" change="handleChange" class="sapUiSmallMarginBottom"/>
 								<ComboBox xmlns="sap.m" id="co_alcance" items="{ path: '/AlcanceSet' }" placeholder="Alcance" selectionChange="handleSelectionChange">
-									<core:Item  key="{pltyp}" text="{ptext}"/>
+									<core:Item key="{pltyp}" text="{ptext}"/>
 								</ComboBox>
 								<MultiInput placeholder="Tiendas" width="30%" id="Tiendas" valueHelpOnly="true" valueHelpRequest=".onValueHelpTiendas"></MultiInput>
 							</l:HorizontalLayout>
@@ -25,8 +26,8 @@
 								<Vbox>
 									<MultiInput id="Jer" placeholder="Jerarquía" valueHelpOnly="true" valueHelpRequest=".onValueHelpRequested"></MultiInput>
 									<!--<MultiInput  id="Cod"  valueHelpOnly="true" valueHelpRequest=".onValueHelpRequested"></MultiInput>-->
-									<ComboBox xmlns="sap.m" id="Cod" items="{ path: '/TipoPlazoSet' }" placeholder="Material">
-										<core:Item xmlns:core="sap.ui.core" key="{Ztsepl}" text="{Desc}"/>
+									<ComboBox xmlns="sap.m" id="Cod" items="{ path: '/MaterialesSet' }" placeholder="Material">
+										<core:Item xmlns:core="sap.ui.core" key="{Matnr}" text="{Maktx}"/>
 									</ComboBox>
 									<!--<Input description="Seleccione códigos" id="Cod"></Input>-->
 								</Vbox>
@@ -43,7 +44,7 @@
 									</ComboBox>
 								</l:HorizontalLayout>
 								<l:HorizontalLayout>
-									<CheckBox text="Contado"/>
+									<CheckBox id="zcont"  text="Contado"/>
 								</l:HorizontalLayout>
 							</Vbox>
 							<!--						<Vbox>
@@ -58,7 +59,7 @@
 						<Button xmlns="sap.m" text="Guardar" press="oDataCall" type="Guardar"/>
 						<Button text="Vista Previa" press="onPress" type="VistaP"/>
 						<Button text="Carga Masiva" press="onPress" type="Folios"/>
-						  <Button icon="sap-icon://alert" text="{= ${message>/}.length }" visible="{= ${message>/}.length > 0 }" type="Emphasized" press="onMessagePopoverPress"/>
+
 					</Toolbar>
 				</footer>
 			</Page>

@@ -76,7 +76,7 @@
 				"type": "sap.ui.model.odata.v2.ODataModel",
 				"settings": {
 					"defaultOperationMode": "Server",
-					"defaultBindingMode": "OneTime",
+					"defaultBindingMode": "OneWay",
 					"defaultCountMode": "Request"
 				},
 				"dataSource": "ZMEDIOS_SRV",
@@ -115,7 +115,7 @@
 				},
 				{
 					"name": "Descuentos",
-					"pattern": "RouteDescuentos/{plantilla}",
+					"pattern": "RouteDescuentos",
 					"titleTarget": "",
 					"greedy": false,
 					"target": [
@@ -124,7 +124,7 @@
 				},
 				{
 					"name": "Plantillas",
-					"pattern": "RoutePlantillas/{medios}",
+					"pattern": "RoutePlantillas",
 					"titleTarget": "",
 					"greedy": false,
 					"target": [

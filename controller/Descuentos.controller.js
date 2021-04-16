@@ -13,11 +13,11 @@ sap.ui.define([
 	"sap/m/MessageBox",
 	'sap/m/ColumnListItem',
 	'sap/m/Label',
-	'sap/m/Token', //	"sap/m/MessageToast"//	
-	'sap/ui/model/BindingMode',
-	'sap/ui/core/message/Message'
+	'sap/m/Token' //	"sap/m/MessageToast"//	
+	//'com/MultipleMessages/model/formatter'
 	//'./Utilities'
-], function(Controller, IconPool, JSONMOdel, Link, Button, Dialog, Bar, Text, ColumnListItem, Label, Token, BindingMode, Message) {
+], function(Controller, IconPool, JSONMOdel, Link, Button, Dialog, Bar, Text, ColumnListItem, Label, Token, BindingMode, Message,
+	MessageBox) {
 	"use strict";
 
 	return Controller.extend("MEDIOS_EKT.controller.Descuentos", {
@@ -26,49 +26,22 @@ sap.ui.define([
 
 			this.getView().byId("Cod").setVisible(false);
 			this.getView().byId("Tiendas").setVisible(false);
+
 			var JSONModel = sap.ui.require("sap/ui/model/json/JSONModel");
 			this.oColModel = new JSONModel(jQuery.sap.getResourcePath("MEDIOS_EKT") + "/columnsModel.json");
+			//var oModel2 = new sap.ui.model.json.JSONModel();
+			// this.oProductsModel = new JSONModel(sap.ui.require.toUrl("sap/ui/demo/mock") + "/products.json");
 
-			//	this.oProductsModel = new JSONModel(sap.ui.require.toUrl("sap/ui/demo/mock") + "/products.json");
-
-			// var oModel = new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/sap/ZMEDIOS_SRV");
 			// this.getView().setModel(this.oModel);
+
+			// this.Medios = new sap.ui.model.json.JSONModel();
+			// var oModel = new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/sap/ZMEDIOS_SRV");
+			// sap.ui.getCore().setModel(oModel, "Medios");
 
 			this.oModel = sap.ui.getCore().getModel("Medios");
 			this.getView().setModel(this.oModel, "Medios");
-
-			this.Medios = new sap.ui.model.json.JSONModel();
-
-			var oModel = new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/sap/ZMEDIOS_SRV");
-			sap.ui.getCore().setModel(oModel, "Medios");
-
-			///////////////////////////////
-
-			var oMessageManager, oModel, oView;
-
-			//Obtenemos la vista actual
-			oView = this.getView();
-
-			// Iniciamos un modelo de mensajes (donde guardaremos los datos)
-			oMessageManager = sap.ui.getCore().getMessageManager();
-			oView.setModel(oMessageManager.getMessageModel(), "message");
-
-			// Registramos el disparador a la vista actual
-			oMessageManager.registerObject(oView, true);
-
-			// create a default model with somde demo data (esto solo es para los campos de input)
-			oModel = new JSONModel({
-				MandatoryInputValue: "",
-				DateValue: null,
-				IntegerValue: undefined,
-				Dummy: ""
-			});
-			//Fijamos el modelo bidireccional
-		//	oModel.setDefaultBindingMode(BindingMode.TwoWay);
-			//Añadimos el modelo a la vista
-		//	oView.setModel(oModel);
-		sap.ui.getCore().setModel(oView, "message");
-
+			var oModel = new sap.ui.model.json.JSONModel();
+			
 		},
 
 		onNavBack: function(oEvent) {
@@ -77,10 +50,10 @@ sap.ui.define([
 			var plantilla = val.substring(12);
 
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-
-			oRouter.navTo("Plantillas", {
-				"medios": sap.ui.getCore().getModel("Medios").oData.id_plantilla
-			});
+			oRouter.navTo("Plantillas", {});
+			// oRouter.navTo("Plantillas", {
+			// 	"medios": sap.ui.getCore().getModel("Medios").oData.id_plantilla
+			// });
 
 			//oRouter.navTo("Plantillas", {"plantilla" : plantilla});	
 
@@ -184,19 +157,20 @@ sap.ui.define([
 
 		oDataCall: function(oEvent) {
 			// call ovice's function based on which button is clicked.
-			//this._checkData();
-			this._checkMandatory();
-
-		},
-
-		_checkMandatory: function() {
-
-			var requiredInputs = this.returnIdListOfRequiredFields();
-			var passedValidation = this.validateEventFeedbackForm(requiredInputs);
+			//	this._checkData();
+	
+			//var requiredInputs = this.returnIdListOfRequiredFields();
+			var passedValidation = this.validateEventFeedbackForm();
 			if (passedValidation === false) {
 				//show an error message, rest of code will not execute.
 				return false;
 			} else {
+				var oModel = new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/sap/ZMEDIOS_SRV");
+				sap.ui.getCore().setModel(oModel, "Medios");
+				var messages;
+				var medios = new sap.ui.model.json.JSONModel();
+
+				var json = [];
 				var myModel = sap.ui.getCore().getModel("Medios");
 				myModel.setHeaders({
 					"X-Requested-With": "X"
@@ -214,88 +188,218 @@ sap.ui.define([
 				obj.Pltyp = this.getView().byId("co_alcance").getSelectedItem().getKey();
 				obj.Zdcred = this.getView().byId("zdcred").getValue();
 				obj.Ztdesc = this.getView().byId("ztdesc").getSelectedItem().getKey();
-				obj.Zplazo = this.getView().byId("co_plazos2").getSelectedItem().getKey();
-
+				if (this.getView().byId("co_plazos2").getSelectedItem() != null) {
+					obj.Zplazo = this.getView().byId("co_plazos2").getSelectedItem().getKey();
+				}
 				if (zcred.getSelected() === true) {
 					obj.Zcred = 'X';
 				}
 
 				obj.Matnr = this.getView().byId("Cod").getValue();
-
+				messages = this._getDialog();
+				//medios = this.oModel;
 				myModel.create("/CreacionSet", obj, {
-					async: false,
-					success: function(oData, response) {
+						async: false,
+						success: function(oData, response) {
 
-						alert("Folio creado ex..."); // eslint-disable-line no-alert
+							//	alert("Folio creado ex..."); // eslint-disable-line no-alert
 
-						var oHMessages = JSON.parse(response.headers["sap-message"]);
+							var oHMessages = JSON.parse(response.headers["sap-message"]);
+							var log;
+							messages.open();
 
-						// var a = JSON.parse(response.responseText);
-						// var errDetails = a.error.innererror.errordetails;
-						// Utilities.manageErrors(errDetails);
+							medios.setData(json);
+							log = oHMessages.message;
+							json.push({
+								message: log
+							});
+							oHMessages.details.forEach(function(item, index) {
+								//json.message = item;
+								//json.message = oHMessages.details[index].message;
+								log = oHMessages.details[index].message;
+								//json.push("hola");
+								json.push({
+									message: log
+								});
+								//json.push({ message: oHMessages.details[index].message });
+								//list.push({ name: item.Name });
+								//json.message = (item.message);
+							});
 
-						//  MessageBox.show(oHMessages.message, {
-						// 	icon: MessageBox.Icon.WARNING,
-						// 	title: "Stop"
-						//});
-					},
-					error: function(oError) {
-						alert("Folio creado error...");
+							sap.ui.getCore().setModel(medios, "Medios");
+							// var arrayLength = oHMessages.message.length;
+							// for (var i = 0; i < arrayLength; i++) {
+							// 
+							// 	json.message = oHMessages.message[i];
+							// 	//Do something
+							// }
+
+							//}
+						},
+						error: function(oError, response) {
+							alert("Folio creado error...");
+
+							var oHMessages = JSON.parse(response.headers["sap-message"]);
+							//messages = oHMessages;
+						}
 
 					}
-				});
+
+				);
 
 			}
+
 		},
 
 		returnIdListOfRequiredFields: function() {
 			var requiredInputs;
+			//return requiredInputs = ['zmercprom', 'zindat', 'zfidat', 'ztsepl', 'co_alcance', 'zdcred', 'ztdesc'];
 			return requiredInputs = ['zmercprom', 'zindat', 'zfidat', 'ztsepl', 'co_alcance', 'zdcred', 'ztdesc', 'co_plazos2'];
+			//
 		},
 
-		validateEventFeedbackForm: function(requiredInputs) {
-			var _self = this;
+		validateEventFeedbackForm: function() {
+
 			var valid = true;
-			requiredInputs.forEach(function(input) {
-				var sInput = _self.getView().byId(input);
-				if (sInput.getValue() == "" || sInput.getValue() == undefined) {
-					valid = false;
-					sInput.setValueState("Error");
-					sInput.setValueStateText("Campo obligatorio");
-				} else {
-					sInput.setValueState("None");
-				}
-			});
+
+			var log;
+			var json = [];
+			var medios =  new sap.ui.model.json.JSONModel();
+
+			if (this.getView().byId("zmercprom").getValue() == null) {
+				valid = false;
+				log = "Indique un título";
+				json .push({
+					message: log
+				});
+			}
+
+			if (this.getView().byId("zindat").getValue() == "") {
+				valid = false;
+				log = "Introduzca una fecha de inicio válida";
+				json.push({
+					message: log
+				});
+			}
+
+			if (this.getView().byId("zfidat").getValue() == "") {
+				valid = false;
+				log = "Introduzca una fecha de fin válida";
+				json.push({
+					message: log
+				});
+			}
+
+			if (this.getView().byId("zcred").getSelected() === false && this.getView().byId("zcont").getSelected() === false) {
+				// obj.Zcred = 'X';
+				valid = false;
+				log = "Selecione crédito o contado";
+				json.push({
+					message: log
+				});
+			}
+
+			if (this.getView().byId("zcred").getSelected() === true && this.getView().byId("ztsepl").getSelectedItem() == null) {
+				valid = false;
+				log = "Selecione Plazos para crédito";
+				json.push({
+					message: log
+				});
+
+			}
+
+			if (this.getView().byId("zfidat").getValue() < this.getView().byId("zindat").getValue()) {
+				valid = false;
+				log = "La fecha de inicio del evento es mayor a la fecha de término";
+				json.push({
+					message: log
+				});
+			}
+
+			if (this.getView().byId("ztdesc").getSelectedItem() == null) {
+				valid = false;
+				log = "Seleccione Tipo de Descuento";
+				json.push({
+					message: log
+				});
+			}
+
+			if (this.getView().byId("co_alcance").getSelectedItem() == null) {
+				valid = false;
+				log = "Seleccione un alcancel válido";
+				json.push({
+					message: log
+				});
+			}
+
+			if (((this.getView().byId("ztdesc").getSelectedItem() != null && this.getView().byId("ztdesc").getSelectedItem().getKey() == 'M')) &&
+				this.getView().byId("zdcred").getValue() == "") {
+				valid = false;
+				log = "Capture Descuento a crédito";
+				json.push({
+					message: log
+				});
+			}
+
+			if (((this.getView().byId("ztdesc").getSelectedItem() != null && this.getView().byId("ztdesc").getSelectedItem().getKey() == 'P')) &&
+				this.getView().byId("zdcred").getValue() == "") {
+				valid = false;
+				log = "Ingrese % descuento Crédito, entre 1 y 100";
+				json.push({
+					message: log
+				});
+			}
+
+			if (this.getView().byId("RB1-1").getSelected() === true && this.getView().byId("Jer").getSelectedItem() === null) {
+				valid = false;
+				log = "Debe seleccionar Jerarquías Válidas";
+				json.push({
+					message: log
+				});
+			}
+
+			// if (this.getView().byId("RB1-2").getSelected() === true && this.getView().byId("Cod").getSelectedItem() === null) {
+			// 	valid = false;
+			// 	log = "No ha seleccionado artículos";
+			// 	data.push({
+			// 		message: log
+			// 	});
+			// }
+		
+			if (valid === false) {
+					
+				//medios = this.oModel;
+				medios.setData(json);
+				this._getDialog().open();
+				sap.ui.getCore().setModel(medios, "Medios");
+			}
+
 			return valid;
+			// var oFinicio = this.byId("zindat");
+			// var oFfin = this.byId("zfidat");
+			// if (oFinicio.getValue() < oFfin.getValue()) {
+			// 	oFinicio.setValueState(sap.ui.core.ValueState.None);
+			// } else {
+			// 	oFinicio.setValueState("Error");
+			// 	oFinicio.setValueStateText("Fecha incorrecta");
+			// 	//show an error message, rest of code will not execute.
+			// 	return false;
+			// }
+		},
+		_getDialog: function() {
+			// create a fragment with dialog, and pass the selected data
+			if (!this.dialog) {
+				// This fragment can be instantiated from a controller as follows:
+				this.dialog = sap.ui.xmlfragment("MEDIOS_EKT.view.MessageError", this);
+				//debugger;
+			}
+
+			//debugger;
+			return this.dialog;
 		},
 
-		_checkData: function() {
-			/*			var oMerca = this.byId("zmercprom");
-						if (oMerca.getValue() !== "") {
-							oMerca.setValueState(sap.ui.core.ValueState.None);
-						} else {
-							oMerca.setValueState(sap.ui.core.ValueState.Error);
-							oMerca.setValueStateText("Introduza una descripción");
-						}*/
-			var oFinicio = this.byId("zindat");
-			var oFfin = this.byId("zfidat");
-			if (oFinicio.getValue() < oFfin.getValue()) {
-				oFinicio.setValueState(sap.ui.core.ValueState.None);
-			} else {
-				oFinicio.setValueState("Error");
-				oFinicio.setValueStateText("Fecha incorrecta");
-				//show an error message, rest of code will not execute.
-				return false;
-			}
-		},
-
-		_getMessagePopover: function() {
-			// create popover lazily (singleton)
-			if (!this._oMessagePopover) {
-				this._oMessagePopover = sap.ui.xmlfragment(this.getView().getId(), "MEDIOS_EKT.view.MessageError", this);
-				this.getView().addDependent(this._oMessagePopover);
-			}
-			return this._oMessagePopover;
+		closeDialog: function() {
+			this._getDialog().close();
 		}
 
 	});

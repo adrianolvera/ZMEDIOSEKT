@@ -1,13 +1,41 @@
-<core:FragmentDefinition
-    xmlns="sap.m"
-    xmlns:core="sap.ui.core">
-    <MessagePopover
-        items="{message>/}"
-        initiallyExpanded="true">
-        <MessageItem
-            type="{message>type}"
-            title="{message>message}"
-            subtitle="{message>additionalText}"
-            description="{message>description}"/>
-    </MessagePopover>
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Dialog title="INFORMACIÓN">
+		<l:Grid defaultSpan="L12 M12 S12" width="auto" id="idGrid">
+			<l:content>
+				<f:SimpleForm id="SimpleFormDisplay354" minWidth="1024" maxContainerCols="2" editable="false" layout="ResponsiveGridLayout" 
+					labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4" columnsL="2" columnsM="2">
+					<f:content>
+			<Table items="{Medios>/}">
+				<columns>
+					<Column><Label text="Descripción"/></Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells> 
+					
+							<Text text="{Medios>message}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+					<!--<Text text="{Medios>/message}"/>-->
+
+						<!--<Label text="Person No."/>-->
+						<!--<Input id="idPersNo"/>-->
+						<!--<Label text="FirstName"/>-->
+						<!--<Input id="idFirstName"/>-->
+						<!--<Label text="LastName"/>-->
+						<!--<Input id="idLastName"/>-->
+						<!--<Label text="Department"/>-->
+						<!--<Input id="idDepartment"/>-->
+						<!--<Label text="E-Mail"/>-->
+						<!--<Input id="idEMail"/>-->
+					</f:content>
+				</f:SimpleForm>
+			</l:content>
+		</l:Grid>
+		<buttons>
+			<Button text="CLOSE" press="closeDialog" type="Reject"/>
+		</buttons>
+	</Dialog>
 </core:FragmentDefinition>
